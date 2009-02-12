@@ -1,0 +1,95 @@
+%%
+%% This is file `example.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% coppe.dtx  (with options: `example')
+%% 
+%% This is a sample monograph which illustrates the use of `coppe' document
+%% class and `coppe-unsrt' BibTeX style.
+%% 
+%% \CheckSum{1311}
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\documentclass[dsc,pdftex]{coppe}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+
+\makelosymbols
+\makeloabbreviations
+
+\begin{document}
+  \title{Titulo}
+  \foreigntitle{Title}
+  \author{George Oliveira}{Ainsworth Jr.}
+  \advisor{Prof.}{Carlos}{Magluta}{D.Sc.}
+  \coadvisor{Prof.}{Fernando Luiz Bastos}{Ribeiro}{D.Sc.}
+  \examiner{Prof.}{Alvaro Luiz Gayoso Azeredo Coutinho}{D.Sc.}
+  \examiner{Prof.}{Webe Joao Mansur}{Ph.D.}
+  \examiner{Prof.}{Paulo Batista Goncalves}{D.Sc.}
+  \department{PEC}
+  \date{12}{2008}
+
+  \keyword{Problemas de Autovalor}
+  \keyword{Metodo de Arnoldi}
+  \keyword{Analise Dinamica}
+  
+  \maketitle
+
+  \frontmatter
+
+  \dedication{Minha dedicatoria}
+
+  \chapter*{Agradecimentos}
+ Meus agradecimentos.
+ 
+  \begin{abstract}
+  Meu resumo.
+  \end{abstract}
+
+  \begin{foreignabstract}
+  My abstract.
+  \end{foreignabstract}
+
+  \tableofcontents
+  \listoffigures
+  \listoftables
+  \printlosymbols
+  \printloabbreviations
+
+%Usar \abbrev{}{} p/ abreviacoes. Pesquisar sobre isso.
+%  \symbl{$\Omega$}{dominio de definicao de uma equacao diferencial}
+
+  \mainmatter
+  
+  \chapter{Introdução}
+  Teste!!!
+  
+  \backmatter
+  \nocite{*}
+  
+  \bibliographystyle{coppe-unsrt}
+  \bibliography{bibliografia}
+
+  \appendix
+  \chapter{Codigo Fonte}
+  Teste
+\end{document}
+%% 
+%%
+%% End of file `example.tex'.

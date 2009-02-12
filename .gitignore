@@ -1,0 +1,17 @@
+*.aux
+*.out
+*.log
+main.pdf
+*~
+.*
+*.toc
+*.gz
+!.gitignore
+*.texshop
+*.bbl
+*.blg
+*.abx
+*.lof
+*.lot
+*.syx
+
