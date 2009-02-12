@@ -42,62 +42,91 @@
 \makeloabbreviations
 
 \begin{document}
-  \title{Titulo}
-  \foreigntitle{Title}
-  \author{George Oliveira}{Ainsworth Jr.}
-  \advisor{Prof.}{Carlos}{Magluta}{D.Sc.}
-  \coadvisor{Prof.}{Fernando Luiz Bastos}{Ribeiro}{D.Sc.}
-  \examiner{Prof.}{Alvaro Luiz Gayoso Azeredo Coutinho}{D.Sc.}
-  \examiner{Prof.}{Webe Joao Mansur}{Ph.D.}
-  \examiner{Prof.}{Paulo Batista Goncalves}{D.Sc.}
-  \department{PEC}
-  \date{12}{2008}
 
-  \keyword{Problemas de Autovalor}
-  \keyword{Metodo de Arnoldi}
-  \keyword{Analise Dinamica}
+\title{Sistema \emph{Online} de Filtragem em um Ambiente com Alta Taxa de Eventos e Fina Granularidade}
+\foreigntitle{Online Triggering System for a High Event Rate Environment with Fine Granularity}
+\author{Rodrigo Coura}{Torres}
+\advisor{Prof.}{José Manoel}{de Seixas}{D.Sc.}
+% \coadvisor{Prof.}{Fernando Luiz Bastos}{Ribeiro}{D.Sc.}
+\examiner{Prof.}{Alvaro Luiz Gayoso Azeredo Coutinho}{D.Sc.}
+\examiner{Prof.}{Webe Joao Mansur}{Ph.D.}
+\examiner{Prof.}{Paulo Batista Goncalves}{D.Sc.}
+\department{PEE}
+\date{06}{2009}
+
+\keyword{Filtragem \emph{online}}
+\keyword{Física de altas energias}
+\keyword{Procesamento veloz}
+\keyword{Extração de características}
+\keyword{Reconhecimento de padrões}
   
-  \maketitle
+\maketitle
 
-  \frontmatter
+\frontmatter
 
-  \dedication{Minha dedicatoria}
+\dedication{À Deus, causa suprema de todas as coisas. À minha amada família, por todo o amor incondicional dedicado a mim.}
 
-  \chapter*{Agradecimentos}
- Meus agradecimentos.
+\chapter*{Agradecimentos}
+
+\begin{itemize}
+
+\item A Deus, pela saúde e disposição que me permitiram a
+realização deste trabalho.
+
+\item Aos meus pais, Osvani e João Carlos, que com seu amor
+incondicional, permitiram que me tornasse o homem que sou hoje.
+
+\item À minha irmã Yasmine, por sempre me apoiar e ser um pilar
+de apoio nos momentos difíceis.
+
+\item À minha avó, Olinda, por seu carinho e sabedoria adquirida
+ao longo dos anos, e ao meu avô Oswaldo, que infelizmente não se
+encontra mais fisicamente entre nós, mas que tenho certeza que
+está sempre ao meu lado.
+
+\item Aos meus amigos, que sempre estavam dispostos a me ajudar
+nos momentos de dificuldade.
+
+\item Ao meu orientador, José Manoel de Seixas, por toda ajuda, indispensável na elaboração deste trabalho.
+
+\item A todos os amigos e colegas do CERN, que me acolheram tão bem, mesmo eu estando tão longe de casa. 
+
+\item Aos funcionários e amigos do LPS, pela companhia sempre
+agradável durante a elaboração deste trabalho.
+
+\end{itemize}
+
  
-  \begin{abstract}
-  Meu resumo.
-  \end{abstract}
+\begin{abstract}
+O experimento ATLAS no CERN, Suíça, contará com um Sistema de Filtragem que deverá separar a Física ordinária dos eventos que possam representar decaimentos do raro bóson de Higgs. O Segundo Nível deste Sistema de Filtragem será constituído de cerca de 1.000 computadores ligados em rede, processando cada evento aprovado pelo Primeiro Nível em não mais que 10 milissegundos. Neste nível, operará um conjunto de algoritmos descritos em  \emph{software} que executará a seleção de eventos. Dentre estes, algoritmos de deteção de elétrons têm papel fundamental na eficiência da aquisição de dados,  uma vez que a ocorrência destas partículas pode representar a Física de interesse. Neste trabalho, apresentamos algoritmos de discriminação mais eficientes baseados em redes neurais artificiais e um sistema de compactação de dados que se beneficia do perfil de deposição energético destas partículas em calorímetros, alcançando uma eficiência de classificação de 97,6\% em elétrons para apenas 3,2\% de falso-alarme em jatos. Este algoritmo de deteção  é implementado dentro da complexa infraestrutura de \emph{software} do experimento, podendo ser executado em apenas 125 microssegundos.
+\end{abstract}
 
-  \begin{foreignabstract}
-  My abstract.
-  \end{foreignabstract}
+\begin{foreignabstract}
+The ATLAS experiment at CERN, Switzerland, will count on a triggering system that separates the ordinary physics from the one representing decays of the rare Higgs boson. The Second Level of such a Trigger System will be composed 1,000 computers connected by commodity networks, processing each event approved the First Level Trigger in no more than 10 milliseconds. A set of algorithms described via software will operate in this filtering level. Among them, electron detection systems play a fundamental role to the data acquisition since the existence of these particles can represent interesting physics. In this work, we present more efficient discrimination algorithms based on artificial neural networks and a compaction system which benefits from the energy deposit profiles of these particles in calorimeters, reaching a classification efficiency of 97.6\% for electrons for a false-alarm of only 3.2\% in jets. This detection algorithm is implemented as part of the experiment's complex software infraestructure and can be executed in only 125 microseconds.
+\end{foreignabstract}
 
-  \tableofcontents
-  \listoffigures
-  \listoftables
-  \printlosymbols
-  \printloabbreviations
+\tableofcontents
+\listoffigures
+\listoftables
+\printlosymbols
+\printloabbreviations
 
 %Usar \abbrev{}{} p/ abreviacoes. Pesquisar sobre isso.
 %  \symbl{$\Omega$}{dominio de definicao de uma equacao diferencial}
 
-  \mainmatter
+\mainmatter
   
-  \chapter{Introdução}
-  Teste!!!
+\chapter{Introdução}
+Teste!!!
   
-  \backmatter
-  \nocite{*}
-  
-  \bibliographystyle{coppe-unsrt}
-  \bibliography{bibliografia}
+\backmatter
 
-  \appendix
-  \chapter{Codigo Fonte}
-  Teste
+%\nocite{*}
+  
+\bibliographystyle{coppe-unsrt}
+\bibliography{bibliografia}
+
+%\appendix
+%\chapter{Codigo Fonte}
+
 \end{document}
-%% 
-%%
-%% End of file `example.tex'.
