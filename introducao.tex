@@ -1,0 +1,88 @@
+\chapter{Introdução}
+\label{chap:introducao}
+
+Sistemas de filtragem de dados são ferramentas empregadas em diversas áreas, com o objetivo de separar um conjunto de sinais de interesse daqueles que não agreguem informação relevante ao problema. Atualmente, devido à complexidade de certos problemas, tem-se que o volume de informação a ser analisada torna-se bastante grande, de forma que a dimensão do espaço original de dados de entrada tende a ser consideravelmente elevada, o que dificulta o processo de análise dos mesmos. Além disso, como o volume de eventos pode ser muito grande, a velocidade com a qual a filtragem é realizada deve ser capaz de atender a taxa com a qual se espera que esses resultados sejam gerados, o que é especialmente importante quando se planeja que o sistema de filtragem opere de maneira \emph{online}. Por último, pode-se destacar situações onde, além do volume de dados ser muito grande, o evento de interesse seja bastante raro, devendo o sistema ser capaz de identificar estes raros eventos num volume muito maior de eventos sem interesse. Assim sendo, desenvolver métodos otimizados de filtragem passa a ser um desafio. Em geral, é desejável que estes sistemas de filtragem apresentem as seguintes características:
+
+\begin{itemize}
+
+\item Alta eficiência na identificação dos eventos de interesse, aliada a uma baixa incidência de falso alarme.
+
+\item implementação (\emph{software} e/ou \emph{hardware}) simplificada.
+
+\item Flexibilidade de alteração do sistema desenvolvido, de forma a atender possíveis atualizações e requisitos futuros.
+
+\item Velocidade de execução compatível com os requisitos de tempo do projeto.
+
+\item Robustez, de forma que o sistema desenvolvido mantenha suas características funcionais ao longo do tempo de sua utilização.
+
+\item Facilidade de integração com outros módulos que com ele interfaceiem.
+
+\end{itemize}
+
+
+Para lidar com o problema da alta dimensionalidade dos eventos, pode-se adotar técnicas que visam extrair a informação realmente relevante do processo abordado, de forma a se descartar a informação inútil ao objetivo do experimento e, assim, reduzir a dimensão dos eventos, sem, no entanto, desprezar a parte interessante dos mesmos. Para tal, pode-se adotar métodos determinísticos, normalmente mais simples, ou métodos baseados em processamento estocástico, que, baseados na estatística do processo, conseguem, freqüentemente, reter mais eficientemente a informação sobre o processo abordado.
+
+O processamento estatístico também surge como uma poderosa técnica para os sistemas de classificação de eventos, visto que certas técnicas são capazes de aprender muito mais sobre um processo do que métodos determinísticos. Como, na maioria das vezes, o problema a ser resolvido é não linear, esta técnica ganha ainda mais força. Através da utilização de algoritmos baseados em estatística de ordem superior, e de técnicas não lineares (redes neurais, por exemplo), torna-se possível lidar eficientemente com a natureza complexa da informação, de forma a executar eficientemente o processo de discriminação, com algoritmos rápidos e com ótimos índices de classificação.
+
+
+Entretanto, mesmo algoritmos de processamento bastante velozes podem não ser capazes de atender aos requisitos de velocidade de um determinado sistema, dado o enorme fluxo de eventos a serem filtrados. Desta maneira, surge a possibilidade de se empregar mais de uma unidade de processamento para a execução da tarefa. Desta forma, a teoria de processamento distribuído surge como uma excelente aliada em circunstâncias como a mencionada, de forma que se pode, por exemplo, distribuir o volume de eventos por diversos processadores, multiplicando o poder de processamento do sistema e atendendo, por fim, os requisitos de tempo de processamento do mesmo. 
+
+
+\section{Motivação}
+
+A física experimental de altas energias é um dos ramos da ciência que mais exige de sistemas de processamento. Isto ocorre, uma vez que a física experimental visa confirmar, experimentalmente, teorias propostas pela física teórica. Entretanto, tem-se que preencher a distância que existe entre o desenvolvimento de uma nova teoria e a conseqüente validação da mesma através de experimentos, uma vez que estes experimentos normalmente exigem tecnologias ainda não disponíveis, ou altamente elaboradas. Neste aspecto, sistemas de filtragem são bastante utilizados na física experimental. Requisitos severos para um sistema de filtragem são tipicamente encontrados na filtragem de eventos obtidos em experimentos com colisionadores de partículas, uma vez que o número de eventos gerados tende a ser bastante elevado nestes experimentos.
+
+Atualmente, no CERN (Centro Europeu de Pesquisa Nuclear), se leva a cabo o projeto LHC (\emph{Large Hadron Collider}). … um novo acelerador que estará pronto em 2007 e será capaz de atingir níveis de energia nunca antes alcançados, devendo colidir pacotes com um número elevado de prótons com 14 Tev no centro de massa. A detecção dos eventos gerados através das colisões será realizada, entre outros detectores, pelo detector ATLAS (\emph{A Toroidal LHC Apparatus}), que contém os seguintes detectores:
+ 
+\begin{itemize}
+
+\item Detector de traços para a determinação da trajetória de partículas.
+\item Calorímetro Eletromagnético para a análise da deposição energética de partículas eletromagnéticas.
+\item Calorímetro Hadrônico para a análise da deposição energética de partículas hadrônicas.
+\item Detector de Múons para a identificação e determinação da trajetória de múons.
+
+\end{itemize}
+ 
+No ATLAS, o sistema de calorimetria joga um papel fundamental. Os calorímetros, os quais medem a energia das partículas incidentes, são bastante rápidos (respostas geradas em algumas dezenas de nanosegundos) e possuem fina granularidade (alta resolução). As partículas, ao interagirem com o sistema de calorimetria, depositam nele a sua energia (total ou parcial). Dependendo do perfil de deposição de energia, pode-se identificar a classe da partícula incidente. No ATLAS, o sistema de calorimetria está dividido em 7 camadas concêntricas, com mais de cem mil canais de leitura, de tal maneira que se ganha uma dimensão a mais para a analise dos eventos detectados, visto que, com a segmentação do detector, pode-se observar a forma como a partícula penetra através das camadas de detecção.
+
+A física de principal interesse no experimento LHC é o bóson de Higgs. Esta partícula poderá ser observada no ATLAS umas poucas vezes ao longo de vários dias de colisão, nas suas condições de operação. O Higgs (se existir), além de raro, é extremamente instável, decaindo em partículas mais estáveis e menos energéticas durante sua interação com o sistema de detecção ATLAS. Entretanto, a quantidade de eventos gerados durante o processo de colisão no LHC é da ordem de 40 MHz, sendo que cada evento carrega aproximadamente 1 Mbyte de informação. Deste modo, o fluxo de dados será da ordem de 40 TBytes por segundo, impossibilitando o armazenamento completo desses eventos para análise \emph{offline}. Assim, um sistema de filtragem \emph{online} torna-se indispensável para o experimento. O sistema de filtragem deverá identificar os padrões de decaimento do Higgs para poder localizá-lo na massa de eventos com física ordinária, produzida pelas interações mal-sucedidas (interações que não produzem o Higgs, mas sim, canais físicos já conhecidos, e que, portanto, significam ruído para o LHC).
+
+O sistema de filtragem que está sendo desenvolvido é composto por três níveis seqüenciais de análise:
+
+\begin{enumerate}
+
+\item O primeiro nível do sistema de filtragem recebe todos os eventos gerados nas colisões e, devido à alta taxa de eventos gerados, será implementado em \emph{hardware} de baixa programabilidade (FPGAs). Através da diminuição da resolução do detector, espera-se atingir a taxa elevada de processamento que é necessária. Como resultado, espera-se reduzir, neste nível, a taxa de eventos, dos 40 MHz originais, para algo entre 75 e 100 kHz. Sua operação é baseada em calorimetria e detectores rápidos de múons (RPCs).
+
+\item O segundo nível analisará apenas os eventos que passaram pelas condições do primeiro nível e será implementado em \emph{firmware}, utilizando uma rede de aproximadamente 500 processadores duais conectados em rede. Este nível processará algoritmos de busca especializados nos diversos sub-detectores do ATLAS, procurando encontrar elementos que representem decaimentos do bóson de Higgs. Após este nível, a taxa de eventos já estará reduzida a aproximadamente 1 kHz.
+
+\item No terceiro nível, a análise será feita utilizando-se toda a informação recolhida para um evento, evento a evento. Exige pesado ambiente computacional (aproximadamente 1600 processadores duais). Espera-se, ao final desta fase, que a freqüência de eventos esteja reduzida a aproximadamente 100 Hz. Ao final desta fase, os dados são armazenados para posterior análise \emph{offline}.
+
+\end{enumerate}
+
+
+\section{Objetivo}
+
+Na pesquisa que está sendo proposta, aborda-se o processo de filtragem a ser realizado no segundo nível de \emph{trigger}, utilizando o sistema de calorimetria do mesmo, de forma a reter os principais canais de interesse do experimento. No ambiente do LHC, a identificação de eventos de interesse é realizada, principalmente, observando-se as partículas mais estáveis que foram produzidas pela decomposição de partículas instáveis, estas, o alvo principal das pesquisas. Existem vários canais (produtos) físicos de interesse gerados no processo de decomposição. Entretanto, a pesquisa se voltará mais para os casos onde são produzidos elétrons no estado final, convertendo a identificação de elétrons numa tarefa primordial do sistema do segundo nível de filtragem. Por outro lado, jatos mascaram a assinatura de elétrons e estão, em geral, relacionados ao ruído de fundo do experimento. Por tal motivo, estes eventos devem ser descartados.
+
+Quando uma partícula atinge o detector, o primeiro nível de \emph{trigger} seleciona a área onde há informação relevante, gerando uma região de interesse (ROI). Somente esta região (e não toda a área do detector) é propagada para o segundo nível, de forma que se aumenta a banda passante do sistema, dado que reduz-se a quantidade de canais passados ao segundo
+nível.
+
+Entretanto, cada ROI a ser classificada produz sinais com dimensão extremamente elevada. Além disso, os eventos estão imersos em ruído de fundo, às vezes provenientes de interações remanescentes de partículas que atingiram o detector instantes antes do evento considerado (efeito de empilhamento), contribuindo para um ainda maior mascaramento da informação relevante do sinal a ser classificado. Este efeito de empilhamento ocorre quando se utiliza a luminosidade máxima dos feixes, o que é o modo de operação nominal previsto para o LHC, visto que, nessas circunstâncias, aumenta-se a probabilidade de se observar o bóson de Higgs. Entretanto, o aumento da luminosidade aumenta, graças ao efeito de empilhamento, o nível de ruído dos padrões de interesse.
+
+Os problemas relacionados ao projeto do segundo nível de filtragem (velocidade, dimensão e níveis de ruído elevados) tendem a tornar o processo de classificação de eventos uma tarefa bastante complexa. Desta maneira, métodos de pré-processamento devem ser utilizados de forma a reduzir a dimensão do espaço original de dados através da retenção da informação realmente relevante ao processo de classificação. Serão estudados tanto métodos de pré-processamento baseados na informação topológica do sinal a ser classificado, bem como técnicas do processamento estatístico de ordem superior, visando-se explorar a informação granular disponível no segundo nível de \emph{trigger} do ATLAS. Uma vez que se reduz a dimensão do evento e o mascaramento da informação relevante do mesmo, torna-se possível o desenvolvimento de classificadores mais simples, eficientes do ponto de vista de classificação, velozes e com baixo requerimento de memória, características fundamentais para a implementação do sistema em ambiente \emph{online}.
+
+Redes Neurais têm mostrado um desempenho muito bom em aplicações de reconhecimento de padrões. Para calorímetros, a identificação de partículas tem sido tentada com bastante sucesso. Esta técnica torna-se bastante interessante, dado que é capaz de diferenciar padrões cujas diferenças são bastante sutis. Além disso, são classificadores bastante velozes, e como são desenvolvidos baseados na estatística do problema, tendem a generalizar muito bem a solução, podendo fornecer uma saída coerente mesmo quando um dado nunca antes visto é apresentado, o que é essencial no ATLAS, visto que este procura por novos elementos. Desta maneira, pensa-se em adotar uma rede neural como sistema de classificação dos eventos pré-processados. Redes Neurais também podem ser utilizadas para a extração de características do processo, como no caso das Componentes Principais Não Lineares (NLPCA) e de Discriminação (PCD).
+
+A crescente demanda por processamento veloz é o principal motivo para a evolução do desempenho computacional oferecido pelos processadores atuais. Em geral, os computadores convencionais (seqüenciais) vêm sendo capazes de suprir esta demanda, mas, hoje, para algumas aplicações de alto desempenho, os computadores convencionais não conseguem atender, de maneira plena, os níveis de performance necessários. Neste contexto, ganha realce o paradigma computacional do processamento distribuído. A proposta do processamento distribuído é a utilização, de maneira concorrente, de mais de uma máquina (processador) para a solução de um determinado problema. Assim, espera-se suprir esta demanda por processamento veloz aumentando-se a velocidade de processamento através do aumento no número de processadores do sistema. No caso do projeto do sistema de \emph{trigger}, o processamento distribuído torna-se indispensável para a execução da tarefa, dado ao tempo bastante reduzido para a classificação de cada evento e a necessidade de operação \emph{online} do mesmo. Cerca de dois mil processadores duais de uso geral (PC) estarão conectados por redes Ethernet de alta velocidade, garantindo que o fluxo de dados seja mantido de acordo com as restrições de tempo do projeto de todo o sistema de filtragem do ATLAS.
+
+Assim, a pesquisa proposta envolve o desenvolvimento de algoritmos de processamento compactos e inteligentes para a identificação dos raros canais de interesse no segundo nível de filtragem do ATLAS, usando redes neurais artificiais para a classificação dos eventos produzidos nas colisões em um ambiente de processamento distribuído que envolve 500 nós duais de processamento. A informação fundamental será provida pelo sistema de calorimetria do ATLAS, o qual dispara todo o processo de filtragem do detector.
+
+O sistema de filtragem, por ser um projeto extremamente complexo, também precisa dispor de um sistema de controle de falhas e manipulação de erros. Este sistema será desenvolvido para que, na eventualidade de falhas por parte do detector, o mesmo seja capaz de gerenciar a ocorrência de forma a minimizar o impacto da falha no experimento. Para que este controle de falhas seja eficaz, um eficiente sistema de monitoração também será desenvolvido, de forma que qualquer parte defeituosa do sistema seja identificada o mais rápido possível, para que as medidas adequadas para o solucionamento sejam adotadas o mais breve possível. O sistema de monitoração também será encarregado de levar a informação de monitoração ao usuário final, na forma de histogramas, \emph{flags} de \emph{status}, etc.
+
+Também serão realizados testes com o sistema de filtragem. Para tal, o CERN dispões de uma versão reduzida do sistema de \emph{trigger}, de forma que os algoritmos de filtragem, monitoração, entre outros, possam ser testados em um ambiente bastante próximo ao real. A UFRJ também conta com um pequeno conjunto de máquinas que emulam o funcionamento do sistema de \emph{trigger}, de forma que estes algoritmos também poderão ser testados no Brasil. Por fim, espera-se, em 2007, a realização do comissionamento do detector ATLAS, usando raios cósmicos como sinal de entrada do sistema de detecção.
+
+
+
+\section{Organização do Trabalho}
+
+Este documento está organizado da seguinte maneira: o capítulo \ref{chap:lhc} fará uma breve ambientalização do problema a ser solucionado, bem como do experimento sendo desenvolvido para este fim. O capítulo \ref{chap:sistema_filtragem} apresenta, por sua vez, o sistema de filtragem necessário para a realização do experimento de busca do bóson de Higgs. 
