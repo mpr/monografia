@@ -79,3 +79,35 @@ A facilidade da linguagem \emph{Python}, aliada ao ambiente integrado de desenvo
 A abordagem utilizada para a concepção do \emph{PartitionMaker} resultou num claro aumento da produtividade dos desenvolvedores e operadores do sistema de filtragem do ATLAS. Antes, era necessária a presença de especialistas para garantir a correta configuração do sistema de filtragem. Com este conhecimento especialista embutido no \emph{PartitionMaker}, os usuários ficam mais independentes durante o processo de configuração. Isto resulta, também, em ganhos de produtividade para os técnicos especialistas, visto que minimiza-se a necessidade destes interromperem suas atividades para apoiar usuários menos experientes.
 
 Outro resultado obtido foi a considerável diminuição de execuções mal sucedidas para os testes do sistema de filtragem do ATLAS. Com o \emph{PartitionMaker} identificando e notificando automaticamente possíveis erros durante a configuração, possíveis falhas podem ser identificadas antes da execução do sistema de filtragem, evitando-se a interrupção da operação do experimento.
+
+
+\section{Automatic Online Triggering Execution}
+\label{sec:runner}
+
+Although the configuration process can be fully automated, by means of configuration database creation scripts, the execution of TDAQ is still manual. In order to start a given TDAQ run, once the configuration database is available, the following steps must be taken:
+
+\begin{enumerate}
+
+\item Boot: at this point the configuration database file is read, and the top level control applications are started. then, each control application starts up any controller placed beneath it within the segments hierarchy tree. After, each controller will start up any application within its segment, as well as all the configured RDB servers. All the applications are started up on the computer node designed for them in the database configuration file.
+
+\item Configure: during this phase, the applications will retrieve their running configuration parameters from their RDB servers, which basically contain a cached copy of the original database configuration file. After this step, the TDAQ infrastructure is ready to begin its operation.
+
+\item Run: this is the phase where data is actually being read from ATLAS detectors for the nominal use case, or from Monte Carlo simulation files if the TDAQ execution is envisaged for testing purposes. During this step, monitoring applications samples all TDAQ resources (memory consumption, LVL1 accept rate, CPU utilization, etc.), they also generate online histogramming with timing information, decision threshold achieved, etc. Finally, log files are created on the application nodes with any useful information for posterior analysis (warning / error messages issued, etc.). This running state is sustained until explicit user intervention requiring its interruption.
+
+\end{enumerate}
+
+While issuing the commands above manually is reasonable for the nominal operation case, it is quite tedious to perform all theses steps manually when several testing cases must be covered, which is a common case in the TDAQ development, either for TDAQ new releases validation and overnight tests, as well as for validation of new acquired hardware.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.47\textwidth]{runner_execution_flow}
+\end{center}
+\caption{Runner execution flow example.}
+\label{fig:runner_exec_flow}
+\end{figure}
+
+Having this necessity in mind, the \emph{Runner} environment was developed. Its main goal is to provide an automated / scriptable way of running the TDAQ infrastructure, as well as collecting its monitoring information from the monitoring applications providing, if desired, a summarized report of the overall TDAQ execution. In Fig.~\ref{fig:runner_exec_flow} is presented a general example of the \emph{Runner} execution flow. In this example, the user (a running script, for instance) provides the configuration database file, and requests the TDAQ infrastructure to be executed for a time long enough so that 2 monitoring samples can be obtained. First the \emph{Runner} sends the message to the controller to boot the TDAQ modules to be used for this particular run. The controller then propagates the boot command to the rest of the applications. Next, the same sequence takes place, but this time to ask each TDAQ application to retrieve their configuration from the RDB server. In the next step, the \emph{Runner} asks the controller to send the command to start TDAQ operation. After that, each application will publish their monitoring information on their IS server, which is the application responsible for storing monitoring information. By knowing the monitoring sampling period, the \emph{Runner} can request the monitoring information published on the IS server. In the mean time, the online histogramming are being filled by the IS server. Once the 2 monitoring samples are collected, the \emph{Runner} issues the stop command to the controller, which propagates the command to all TDAQ applications. After, the online histograms are retrieved from the IS server, and the TDAQ infrastructure is requested to be shutdown. After this step, the \emph{Runner} connects to each of the nodes used in this TDAQ run to collect their log files. At the end, the monitoring information, log files and online histograms are returned to the user for further analysis, if desired.
+
+The \emph{Runner} is presented as a set of Python modules. Therefore, the same IDE and syntax language available for the \emph{PartitionMaker} are available for the \emph{Runner}.  Consequently, plugins and running scripts can be easily developed for this environment. By combining these 2 environments, with an analysis framework with a Python interface, like ROOT \cite{bib:root}, the configuration, execution and analysis of the data obtained during TDAQ execution can be fully automated, greatly improving validation capabilities of the overall TDAQ infrastructure.
+
+
