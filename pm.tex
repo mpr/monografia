@@ -1,16 +1,19 @@
 \chapter{Gerenciamento do Sistema de Filtragem}
 \label{chap:pm}
 
+O capítulo \ref{chap:sistema_filtragem} apresentou toda a complexidade do sistema de filtragem do ATLAS. Como o projeto desenvolvido neste trabalho é para execução dentro deste ambiente, torna-se imperativo ser capaz de colocar toda esta infra-estrutura em operação, para observar como o sistema desenvolvido se comportará durante sua operação nominal. 
+
+
 \section{O Servidor de Base de Dados}
 \label{sec:oks}
 
-A descrição do sistema de filtragem de alto nível do ATLAS deixa clara a complexidade deste sistema. Existem múltiplos módulos que precisam interconectar-se. Para isso, precisam saber o protocolo de comunicação a ser utilizado, em que computador cada aplicativo será executado, etc. Assim, surge a necessidade de prover uma base de dados de configuração que se encarregará de determinar quais módulos estarão ativos, e quais as configurações de cada um, além de prover uma interface para que cada aplicativo acesse seus parâmetros de configuração. Os requisitos de tempo, escalabilidade e arquivamento do sistema de filtragem do ATLAS tornam as aplicações de base de dados comercialmente existentes inviáveis, resultando na necessidade de criar-se uma base de dados própria, capaz de atender a estes requisitos. 
+Assim, surge a necessidade de prover uma base de dados de configuração que se encarregará de determinar quais módulos estarão ativos, e quais as configurações de cada um, além de prover uma interface para que cada aplicativo acesse seus parâmetros de configuração. Os requisitos de tempo, escalabilidade e arquivamento do sistema de filtragem do ATLAS tornam as aplicações de base de dados comercialmente existentes inviáveis, resultando na necessidade de criar-se uma base de dados própria, capaz de atender a estes requisitos. 
 
-Com esta finalidade, foi desenvolvido a base de dados OKS (\emph{Object Kernel Support}) \cite{bib:paper_oks}. No OKS, cada aplicação ou recurso do sistema de filtragem é descrito como uma classe em uma base de dados de \emph{schema}. Esta base contém a descrição de todas as classes, os atributos disponíveis, relações de herança e dependência com outras classes, etc, de acordo com o conceito de programação orientada a objetos \cite{bib:poo}. Adicionalmente, o OKS fornece um ambiente onde o usuário pode descrever como gostaria de configurar o sistema de filtragem de alto nível, através do instanciamento e configuração de parâmetros das classes contidas no \emph{schema} e, ao final, gerar uma base de dados de configuração. Esta base será, no momento da inicialização do sistema de \emph{trigger}, lida por um aplicativo de controle, que será responsável por inicializar cada um dos aplicativos do sistema de filtragem em seus respectivos nós de processamento. Em seguida, cada aplicação deverá acessar esta base de dados de configuração de forma a configurar parâmetros que digam respeito ao seu funcionamento em especial (tamanho de filas, protocolo de comunicação a ser usado, valores de \emph{timeout}, etc).  
+Com esta finalidade, foi desenvolvido a base de dados OKS (\emph{Object Kernel Support}) \cite{bib:oks}. No OKS, cada aplicação ou recurso do sistema de filtragem é descrito como uma classe em uma base de dados de \emph{schema}. Esta base contém a descrição de todas as classes, os atributos disponíveis, relações de herança e dependência com outras classes, etc, de acordo com o conceito de programação orientada a objetos \cite{bib:poo}. Adicionalmente, o OKS fornece um ambiente onde o usuário pode descrever como gostaria de configurar o sistema de filtragem de alto nível, através do instanciamento e configuração de parâmetros das classes contidas no \emph{schema} e, ao final, gerar uma base de dados de configuração. Esta base será, no momento da inicialização do sistema de \emph{trigger}, lida por um aplicativo de controle, que será responsável por inicializar cada um dos aplicativos do sistema de filtragem em seus respectivos nós de processamento. Em seguida, cada aplicação deverá acessar esta base de dados de configuração de forma a configurar parâmetros que digam respeito ao seu funcionamento em especial (tamanho de filas, protocolo de comunicação a ser usado, valores de \emph{timeout}, etc).  
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.38\textwidth]{oks_multi_control_strategy}
+\includegraphics[width=0.6\textwidth]{oks_multi_control_strategy}
 \caption{Estrutura de controle hierárquico do sistema de filtragem.}
 \label{fig:multi_control}
 \end{center}
@@ -30,7 +33,7 @@ A primeira abordagem automática para a criação de base de dados de configura�
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.38\textwidth]{partitionmaker_block_diagram}
+\includegraphics[width=0.65\textwidth]{partitionmaker_block_diagram}
 \caption{Diagrama em blocos do \emph{PartitionMaker}.}
 \label{fig:pm}
 \end{center}
@@ -42,7 +45,7 @@ Ao ser inicializado pelo usuário, o \emph{PartitionMaker} lê a base de dados d
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.36\textwidth]{partitionmaker_generation_flow}
+\includegraphics[width=0.6\textwidth]{partitionmaker_generation_flow}
 \caption{Exemplo de fluxo de geração de uma partição.}
 \label{fig:pm_flow}
 \end{center}
@@ -60,7 +63,7 @@ Com esta abordagem multi-camada, usuários mais inexperientes com o ambiente e o
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.49\textwidth]{ide}
+\includegraphics[width=0.7\textwidth]{ide}
 \caption{Exemplo de geração de uma partição.}
 \label{fig:ide}4
 \end{center}
@@ -100,7 +103,7 @@ While issuing the commands above manually is reasonable for the nominal operatio
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.47\textwidth]{runner_execution_flow}
+\includegraphics[width=0.6\textwidth]{runner_execution_flow}
 \end{center}
 \caption{Runner execution flow example.}
 \label{fig:runner_exec_flow}
