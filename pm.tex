@@ -1,7 +1,71 @@
 \chapter{Gerenciamento do Sistema de Filtragem}
 \label{chap:pm}
 
-O capítulo \ref{chap:sistema_filtragem} apresentou toda a complexidade do sistema de filtragem do ATLAS. Como o projeto desenvolvido neste trabalho é para execução dentro deste ambiente, torna-se imperativo ser capaz de colocar toda esta infra-estrutura em operação, para observar como o sistema desenvolvido se comportará durante sua operação nominal. 
+O capítulo \ref{chap:sistema_filtragem} apresentou toda a complexidade do sistema de filtragem do ATLAS. Como dito neste capítulo, o primeiro nível de filtragem foi todo implementado utilizando dispositivos de baixa programabilidade do tipo FPGA, de forma que, dado o alto nível de especialização desta seção de filtragem, sua capacidade de diversificação de parâmetros de configuração para execução são bastante limitados. Por outro lado, a parte de alto nível do sistema de filtragem (composto pelos LVL2 e EF), em essência, nada mais são do que milhares de aplicativos, desenvolvidos em linguagem de programação de alto nível, executados em computadores de uso geral com sistemas operacionais do tipo UNIX, conectados por redes \emph{ethernet} de alta velocidade. Isto proporciona enorme ganho no que tange a configurabilidade do sistema de filtragem de alto nível. É permitido configurar desde parâmetros específicos de uma dada aplicação (tamanho da fila de eventos, nome do executável, endereço do nó onde será executada, etc), desde parâmetros de alto nível, como por exemplo o número de L2PU, L2SV, a existência dou não do filtro de eventos, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{O Servidor de Base de Dados}
