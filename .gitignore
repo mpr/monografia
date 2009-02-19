@@ -2,6 +2,7 @@
 *.out
 *.log
 main.pdf
+genPubList.pdf
 *~
 .*
 *.toc
