@@ -1,77 +1,17 @@
 \chapter{Gerenciamento do Sistema de Filtragem}
 \label{chap:pm}
 
-O capítulo \ref{chap:sistema_filtragem} apresentou toda a complexidade do sistema de filtragem do ATLAS. Como dito neste capítulo, o primeiro nível de filtragem foi todo implementado utilizando dispositivos de baixa programabilidade do tipo FPGA, de forma que, dado o alto nível de especialização desta seção de filtragem, sua capacidade de diversificação de parâmetros de configuração para execução são bastante limitados. Por outro lado, a parte de alto nível do sistema de filtragem (composto pelos LVL2 e EF), em essência, nada mais são do que milhares de aplicativos, desenvolvidos em linguagem de programação de alto nível, executados em computadores de uso geral com sistemas operacionais do tipo UNIX, conectados por redes \emph{ethernet} de alta velocidade. Isto proporciona enorme ganho no que tange a configurabilidade do sistema de filtragem de alto nível. É permitido configurar desde parâmetros específicos de uma dada aplicação (tamanho da fila de eventos, nome do executável, endereço do nó onde será executada, etc), desde parâmetros de alto nível, como por exemplo o número de L2PU, L2SV, a existência dou não do filtro de eventos, etc.
+O sistema de filtragem de alto nível do ATLAS é um ambiente em constante evolução. Diariamente, milhares de colaboradores deste ambiente apresentam melhorias, como, por exemplo, parâmetros mais eficientes para a calibração dos detetores,  simulações de Monte Carlo mais fidedignas, ou atualizações do \emph{software} desenvolvido para o sistema de filtragem. Adicionalmente, novas técnicas de processamento de sinais precisam ser validada neste ambiente, para que possam ser incorporadas com segurança ao sistema de filtragem e utilizadas durante a operação nominal do LHC. A complexidade do sistema de filtragem do ATLAS exige um grande tempo de aprendizado para que um colaborador esteja minimamente familiriarizado, de forma que possa validar novas técnicas de filtragem \emph{online} neste ambiente. Adicionalmente, a necessidade constante de testes deste ambiente resultam na necessidade de mecanismos de automação que permitam a configuração e a execução do sistema de filtragem, de forma que desenvolvedores de técnicas de filtragem \emph{online} possam dedicar-se somente a seus estudos, abstraíndo-se da complexidade de gerenciamento deste sistema. Adicionalmente, a automatização permite que mecanismos de validação automáticos sejam desenvolvidos, permitindo que melhorias do sistema de filtragem possam ser testadas sob diversas condições de operação em um espaço de tempo consideravelmente reduzido.
 
+Este capítulo apresenta os mecanismos de gerenciamento automatizado desenvolvidos para permitir que as pesquisas de processamento de sinais abordadas neste trabalho pudessem ser validadas junto ao sistema de filtragem de alto nível do ATLAS, para serem incorporadas oficialmente por este ambiente. Inicialmente, os mecanismos desenvolvidos estavam destinados a gerir apenas o segundo nível de filtragem, visto ser este o local onde as análises desenvolvidas serão implementadas. Entretanto, os projetos desenvolvidos provaram-se de tal forma versáteis, que, no âmbito da colaboração com o projeto ATLAS, foram rapidamente expandidos de forma a abranger todo o sistema de filtragem de alto nível, resultando em grandes ganhos para a colaboração. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Este capítulo apresenta a seguinte organização: a sessão~\ref{sec:oks} apresentará o serviço de base de dados de configuração existente no sistema de filtragem de alto nível, e que fornece, a todos os aplicativos do sistema de filtragem, seus parâmetros de configuração. Em seguida, a sessão~\ref{sec:pm} apresentará o primeiro mecanismo de automação desenvolvido, que destina-se a criar os parâmetros de configuração encessários para operar o \emph{trigger}. Por fim, a sessão\ref{sec:runner} apresentará o ambiente para execução automática do sistema de filtragem do ATLAS.
 
 
 \section{O Servidor de Base de Dados}
 \label{sec:oks}
 
-Assim, surge a necessidade de prover uma base de dados de configuração que se encarregará de determinar quais módulos estarão ativos, e quais as configurações de cada um, além de prover uma interface para que cada aplicativo acesse seus parâmetros de configuração. Os requisitos de tempo, escalabilidade e arquivamento do sistema de filtragem do ATLAS tornam as aplicações de base de dados comercialmente existentes inviáveis, resultando na necessidade de criar-se uma base de dados própria, capaz de atender a estes requisitos. 
+Conforme visto no capítulo~\ref{chap:sistema_filtragem}, a parte de alto nível do sistema de filtragem (composto pelos LVL2 e EF) é composta por milhares de aplicativos, desenvolvidos em linguagem de programação de alto nível, executados em computadores de uso geral com sistemas operacionais do tipo UNIX, conectados por redes \emph{ethernet} de alta velocidade. Isto proporciona enorme ganho no que tange a configurabilidade do sistema de filtragem de alto nível. É permitido configurar parâmetros como quais módulos do sistema de filtragem estarão disponíveis, quando e em que nó uma dada aplicação deve ser inicializada, como monitorar processos em execução e como proceder em caso de erros, etc. Consequentemente, antes de iniciar a operação do sistema de filtragem de alto nível do ATLAS, cada grupo responsável por uma determinada parte do sistema de filtragem deve fornecer os parâmetros de configuração da mesma. Durante a inicialização do sistema de filtragem, estes parâmetros de configuração serão acessados por milhares de processos simultaneamente. Adicionalmente, qualquer mudança feita em um dado parâmetro de configuração deve ser notificada a todos os processos em execução para que os processos impactados por tal mudança seja reconfigurados de acordo. Por fim, as configurações utilizadas precisam ser arquivadas para referências futuras por parte dos colaboradores do sistema de filtragem do ATLAS. Estes requisitos  tornam as aplicações de base de dados comercialmente existentes inviáveis, resultando na necessidade de criar-se uma base de dados própria, capaz de atender a estes requisitos. 
 
 Com esta finalidade, foi desenvolvido a base de dados OKS (\emph{Object Kernel Support}) \cite{bib:oks}. No OKS, cada aplicação ou recurso do sistema de filtragem é descrito como uma classe em uma base de dados de \emph{schema}. Esta base contém a descrição de todas as classes, os atributos disponíveis, relações de herança e dependência com outras classes, etc, de acordo com o conceito de programação orientada a objetos \cite{bib:poo}. Adicionalmente, o OKS fornece um ambiente onde o usuário pode descrever como gostaria de configurar o sistema de filtragem de alto nível, através do instanciamento e configuração de parâmetros das classes contidas no \emph{schema} e, ao final, gerar uma base de dados de configuração. Esta base será, no momento da inicialização do sistema de \emph{trigger}, lida por um aplicativo de controle, que será responsável por inicializar cada um dos aplicativos do sistema de filtragem em seus respectivos nós de processamento. Em seguida, cada aplicação deverá acessar esta base de dados de configuração de forma a configurar parâmetros que digam respeito ao seu funcionamento em especial (tamanho de filas, protocolo de comunicação a ser usado, valores de \emph{timeout}, etc).  
 
