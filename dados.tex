@@ -1,2 +1,52 @@
 \chapter{Análise dos Eventos de Calorimetria}
 \label{chap:dados}
+
+Neste capítulo, serão apresentados os conjunto de dados utilizados para o desenvolvimento da pesquisa proposta. Adicionalmente, serão apresentadas as técnicas utilizadas para o pré-processamento inicial destes dados, antes de serem efetivamente utilizados para estudo. Estudos serão apresentados para identificar as principais características dos eventos a serem discriminados, bem como para validar que não apresentam problemas que inviabilizem sua utilização.
+
+\section{Geração dos Eventos}
+\label{sec:geracao_eventos}
+
+Os eventos utilizados neste trabalho são oriundos de simulações de Monte Carlo ***REF*** produzidas pelos próprios colaboradores do ATLAS utilizando o \emph{Pythia} e o \emph{Geant}, e que ficam disponíveis para análise. ***FALAR O QUE TEM NESSES DADOS (PRE-FILTRADOS PELO LVL1, BYTE STREAM JA FEITO, OU SEJA, COMPARANDO COM A FAQUISICAO REAL DE DADOS, ESTES EVENTOS SIMULAM QUAL PONTO?)***. A tabela~\ref{tab:datasets} apresenta as informações dos conjuntos utilizados. São apresentados o nome de cada conjunto, conforme nomenclatura definida em ***REF***. 
+
+***FALAR O QUE SAO ELETRONS E JATOS (EXPLICAR CIENTIFICAMENTE PQ ELES SAO IMPORTANTES)***
+
+\begin{table}
+\caption{Informações dos eventos utilizados para análise.}
+\begin{center}
+{\tiny
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Conjunto} & \textbf{Tipo} & \textbf{\emph{Pile-up}} & \textbf{Energia (Gev)} & \textbf{Quantidade} \\
+\hline
+mc08.107020.singlepart\_e\_Et7-80.digit.RDO.e342\_s439 & Elétrons simples & Não & 7-80 & X \\
+\hline
+misal1\_mc12.005802.JF17\_pythia\_jet\_filter.digit.RDO.v12003105 & Di-jatos & Não & Y & X \\
+\hline
+ideal2\_mc12.005011.J2\_pythia\_jetjet.digit.RDO.v13003004 & Di-jatos & Não & Y & X \\
+\hline
+ideal2\_mc12.005012.J3\_pythia\_jetjet.digit.RDO.v13003004 & Di-jatos & Não & Y & X \\
+\hline
+\end{tabular}
+}
+\end{center}
+\label{tab:datasets}
+\end{table} 
+
+Para o desenvolvimento de sistemas de filtragem elétron / jato para o segundo nível de filtragem do ATLAS, estes eventos precisam, inicialmente serem pré-filtrados pelo primeiro nível, para que os estudos sejam realizados somente nos eventos que, de fato, chegarão ao segundo nível. Para tal, utilizou-se o Athena para emular o primeiro nível de filtragem, para que este isolasse as regiões de interesse a serem propagadas ao segundo nível. Para que o conjunto resultante da filtragem contenha a maior quantidade possível de especificidades, um corte de baixa energia (7 Gev) foi utilizado, sendo este limiar de corte recomendado pela colaboração ATLAS para análises. Adicionalmente, o LVL1 foi configurado para não observar o vazamento de energia para a camada hadrônica (cortes sem isolamento). Desta maneira, o conjunto de RoI resultante conteria eventos de todas as assinaturas geradas pelo LVL1. Uma vez selecionadas,  as RoI foram copiadas para um arquivo em disco para que pudessem ser analisadas \emph{offline}. É apresentado na tabela~\ref{tab:num_eventos_filtrados}  o número final de regiões de interesse obtidas ao final do processo de pré-filtragem pelo LVL1\footnote{Os números apresentados são os totais por tipo de partícula, independente do conjunto de origem.}.
+
+\begin{table}
+\caption{Número de RoI obtidas para cada padrão após filtragem pelo LVL1.}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Padrão} & \textbf{Total de Eventos} \\
+\hline
+Elétron & 470.282 \\
+\hline
+Jato &  1.366.548 \\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:num_eventos_filtrados}
+\end{table} 
+
