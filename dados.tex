@@ -48,7 +48,7 @@ Jato &  1.366.548 \\
 \label{tab:num_eventos_filtrados}
 \end{table} 
 
-A figura~\ref{fig:estatistica_inicial}, são apresentados os histogramas de energia transversa total de cada RoI, além dos valores de $\eta$, $\phi$ e dos códigos dos detetores de cada célula. Para a distribuição de energia, consideramos apenas o espectro de energia na faixa de $7 \le E_T \le 80$ Gev, visto que é nesta região que se encontram as principais assinaturas de eventos eletromagnéticos. Para a distribuiçào em $\eta$, a análise desconsiderou a parte interna da tampa e o \emph{forward calorimeter}, visto que a probabilidade de eventos interessantes nesta região é bastante reduzida ***REF***.  No caso da distribuição em $\phi$, observa-se que  as células cobrem toda a faixa entre $\pm \pi$, permitindo a análise do peculiar caso onde o centro da RoI fica perto da região de $\pm \pi$ (\emph{phi-wraparound}). Por fim, a distribuição de células pelas camadas de cada calorímetro mostra que todos os subdetetores, com exceção do \emph{forward calorimeter} foram considerados. A linha tracejada apresentada indica qual seria o valor esperado do número de celulas em cada camada, considerando o tamanho de cada célula. Por exemplo, a primeira camada eletromagnética (\texttt{EM1}), na região do barril,  possui células cujo tamanho é a metade das células na segunda camada eletromagnética (\texttt{EM2}), para a mesma região,d e tal forma que devemos encontrar, aproximadamente o dobro do numero de células em (\texttt{EM1}) do que em (\texttt{EM2}), como confirma a figura~\ref{fig:estatistica_inicial}.
+A figura~\ref{fig:estatistica_inicial}, são apresentados os histogramas de energia transversa total de cada RoI, além dos valores de $\eta$, $\phi$ e dos códigos dos detetores de cada célula. Para a distribuição de energia, consideramos apenas o espectro de energia na faixa de $7 \le E_T \le 80$ Gev, visto que é nesta região que se encontram as principais assinaturas de eventos eletromagnéticos. Para a distribuiçào em $\eta$, a análise desconsiderou a parte interna da tampa e o \emph{forward calorimeter}, visto que a probabilidade de eventos interessantes nesta região é bastante reduzida ***REF***.  No caso da distribuição em $\phi$, observa-se que  as células cobrem toda a faixa entre $\pm \pi$, permitindo a análise do peculiar caso onde o centro da RoI fica perto da região de $\pm \pi$ (\emph{phi-wraparound}). Por fim, a distribuição de células pelas camadas de cada calorímetro mostra que todos os subdetetores, com exceção do \emph{forward calorimeter} foram considerados. A linha tracejada apresentada indica qual seria o valor esperado do número de celulas em cada camada, considerando o tamanho de cada célula. Por exemplo, a primeira camada eletromagnética (\texttt{EM1}), na região do barril,  possui células cujo tamanho é a metade das células na segunda camada eletromagnética (\texttt{EM2}), para a mesma região, de tal forma que devemos encontrar, aproximadamente o dobro do numero de células em (\texttt{EM1}) do que em (\texttt{EM2}), como confirma a figura~\ref{fig:estatistica_inicial}. ***EXPLICAR POR QUE O PSENDCAP TEM MUITO MENOS CELULAS QUE O ESPERADO E O GAPSCI0 TEM MUITO MAIS CELULAS DO QUE O ESPERADO***
 
 \begin{figure}
 \centering 
@@ -56,6 +56,26 @@ A figura~\ref{fig:estatistica_inicial}, são apresentados os histogramas de ener
 \subfloat[Jatos]{\label{fig:estatistica_inicial_jatos} \includegraphics[height = 7cm]{hist_et_det_eta_phi_for_jets}}
 \caption{Distribuição da informação proveniente dos calorímetros para cada tipo de partícula.} 
 \label{fig:estatistica_inicial} 
+\end{figure} 
+
+
+Outra análise importante para a validação destes eventos é o vazamento de energia para a seção hadrônica de calorimetria. É apresentada na figura~\ref{fig:energia_secao_hadronica} a distribuição, em valores percentuais, da energia absorvida pela seção hadrônica de calorimetria, comparada com a energia total da RoI. Como esperado, temos que, na média, jatos depositam um percentual maior de sua energia na seção hadrônica. Grandes percentuais de energia podem ser observados para jatos, na figura~\ref{fig:energia_secao_hadronica_jatos}, o que é esperado, visto que a assinatura usada no  primeiro nível para a filtragem destes eventos não utilizava o vazamento de energia para a seção hadrônica como parâmetro de corte (corte sem isolamento). Por outro lado,  os altos ($\ge 10\%$) valores de energia na seção hadrônica apresentados na figura~\ref{fig:energia_secao_hadronica_eletrons} para elétrons requerem uma análise mais profunda, visto que a seção eletromagnética foi concebida para absorver totalmente a energia de eventos eletromagnéticos. 
+
+\begin{figure}
+\centering 
+\subfloat[Elétrons]{\label{fig:energia_secao_hadronica_eletrons} \includegraphics[height = 5cm]{percentual_energia_secao_hadronica-eletrons}}
+\subfloat[Jatos]{\label{fig:energia_secao_hadronica_jatos} \includegraphics[height = 5cm]{percentual_energia_secao_hadronica-jatos}}
+\caption{Distribuição do percentual de energia depositada na seção hadrônica.} 
+\label{fig:energia_secao_hadronica} 
+\end{figure} 
+
+Pode ser observado na figura~\ref{had_sec_analysis-all_detectors} a análise mais detalhada para os elétrons que depositam mais de 10\% de sua energia total na seção hadrônica. Como esperado, esta variação não tem relação com a posição em $\phi$ da part;icula, como fica evidente observando-se a distribuição desta grandeza. O gráfico com a variação da energia depositada na seção hadrônica em relação à energia total da RoI mostra uma ascensão linear da concentração nas eçõ hadrônica, o que é um comportamento esperado. Os eventos com energia hadrônica negativa são aqueles que não ultrapassaram o limiar de ruído, ficando com valores negativos após a subtração do pedestal de ruído. A distribuição em $\eta$, por sua vez, indica as causas  deste fenômeno. Primeiramente, temos a concentração em $| \eta | \sim 0$, que é resultado da existência de uma fenda na região $| \eta \lt 0.015 |$ existente apenas no calorímetro eletromagnético, de tal forma que a absorção de energia nesta região, para o calorímetro eletromagnético fica bastante reduzida. A segunda região com grande concentração de eventos é a região  
+
+\begin{figure}
+\centering 
+\includegraphics[height = 7cm]{had_sec_analysis-all_detectors}
+\caption{Análise da alta deposição de energia na seção hadrônica para elétrons.} 
+\label{fig:analise_secao_hadronica_eletrons} 
 \end{figure} 
 
 
