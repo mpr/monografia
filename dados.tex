@@ -69,7 +69,7 @@ Outra análise importante para a validação destes eventos é o vazamento de en
 \label{fig:energia_secao_hadronica} 
 \end{figure} 
 
-Pode ser observado na figura~\ref{had_sec_analysis-all_detectors} a análise mais detalhada para os elétrons que depositam mais de 10\% de sua energia total na seção hadrônica. Como esperado, esta variação não tem relação com a posição em $\phi$ da part;icula, como fica evidente observando-se a distribuição desta grandeza. O gráfico com a variação da energia depositada na seção hadrônica em relação à energia total da RoI mostra uma ascensão linear da concentração nas eçõ hadrônica, o que é um comportamento esperado. Os eventos com energia hadrônica negativa são aqueles que não ultrapassaram o limiar de ruído, ficando com valores negativos após a subtração do pedestal de ruído. A distribuição em $\eta$, por sua vez, indica as causas  deste fenômeno. Primeiramente, temos a concentração em $| \eta | \sim 0$, que é resultado da existência de uma fenda na região $| \eta \lt 0.015 |$ existente apenas no calorímetro eletromagnético, de tal forma que a absorção de energia nesta região, para o calorímetro eletromagnético fica bastante reduzida. A segunda região com grande concentração de eventos é a região  
+Pode ser observado na figura~\ref{had_sec_analysis-all_detectors} a análise mais detalhada para os elétrons que depositam mais de 10\% de sua energia total na seção hadrônica. Como esperado, esta variação não tem relação com a posição em $\phi$ da partícula, como fica evidente observando-se a distribuição desta grandeza. O gráfico com a variação da energia depositada na seção hadrônica em relação à energia total da RoI mostra uma ascensão linear da concentração na seção hadrônica, o que é um comportamento esperado. Os eventos com energia hadrônica negativa são aqueles que não ultrapassaram o limiar de ruído, ficando com valores negativos após a subtração do pedestal de ruído. A distribuição em $\eta$, por sua vez, indica as causas  deste fenômeno. Primeiramente, temos a concentração em $| \eta | \sim 0$, que é resultado da existência de uma fenda na região $| \eta < 0.015 |$ existente apenas no calorímetro eletromagnético, de tal forma que a absorção de energia nesta região, para o calorímetro eletromagnético fica bastante reduzida. A segunda região com grande concentração de eventos é a região  com $1,475 \leq | \eta | \leq 1,6$, correspondente à zona da fenda do calorímetro eletromagnético, de tal forma que grande parte da energia dos eventos nesta região é depositada nos cintiladores colocados nesta faixa (vide figura~\ref{fig:deposicao_energia_cintiladores}), que, na análise realizada, contam como energia hadrônica. Por fim, observa-se que muito dos eventos estão na região da tampa ***EXPLCIAR PQ ESTAO NA REGIAO DA TAMPA***
 
 \begin{figure}
 \centering 
@@ -78,4 +78,17 @@ Pode ser observado na figura~\ref{had_sec_analysis-all_detectors} a análise mai
 \label{fig:analise_secao_hadronica_eletrons} 
 \end{figure} 
 
+
+\begin{figure}
+\centering 
+\includegraphics[height = 7cm]{histograma_energia_cintiladores_com_crack}
+\caption{Deposição de energia no cintilador posicionado em $0,8 \leq | \eta | \leq 1,6$.} 
+\label{fig:deposicao_energia_cintiladores} 
+\end{figure} 
+
+***DIZER QUE ESTES EVENTOS FORAM EXTRAIDOS DIRETAMENTE DO ATHENA, POR UM PACOTE NOSSO. FALAR COMO FUNCIONA ESSE PACOTE (NTUPLES, ETC)***
+
+\section{Anelamento}
+
+Os eventos validados na sessão~\ref{sec:geracao_eventos} possuem, como principal problema, dimensão elevada e não uniforme (vide figura~\ref{fig:distribuicao_numero_celulas_roi})
 
